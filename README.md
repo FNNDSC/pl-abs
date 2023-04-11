@@ -1,5 +1,9 @@
 # pl-abs
 
+[![Version](https://img.shields.io/docker/v/fnndsc/pl-abs?sort=semver)](https://hub.docker.com/r/fnndsc/pl-abs)
+[![MIT License](https://img.shields.io/github/license/fnndsc/pl-abs)](https://github.com/FNNDSC/pl-abs/blob/main/LICENSE)
+[![ci](https://github.com/FNNDSC/pl-abs/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/pl-abs/actions/workflows/ci.yml)
+
 `pl-abs` is a [blazingly-fast](#Benchmarks) and correct _ChRIS_ _ds_-type plugin which
 calculates the **absolute value** of each number in each data file of an input directory,
 writing outputs to an output directory.

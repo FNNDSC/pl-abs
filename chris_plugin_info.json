@@ -1,0 +1,35 @@
+{
+  "type": "ds",
+  "parameters": [
+    {
+      "name": "input_files",
+      "type": "str",
+      "optional": true,
+      "flag": "--input-files",
+      "short_flag": "-i",
+      "action": "store",
+      "help": "File extensions of files to include.",
+      "default": ".txt",
+      "ui_exposed": true
+    }
+  ],
+  "icon": "",
+  "authors": "Jennings Zhang <Jennings.Zhang@childrens.harvard.edu>",
+  "title": "Absolute Value",
+  "category": "Utility",
+  "description": "A ChRIS plugin to calculate absolute value of numbers in data files",
+  "documentation": "https://github.com/FNNDSC/pl-abs",
+  "license": "MIT",
+  "version": "1.0.0",
+  "selfpath": "/usr/local/bin",
+  "selfexec": "abs",
+  "execshell": "/docker-entrypoint.sh",
+  "min_number_of_workers": 1,
+  "max_number_of_workers": 1,
+  "min_memory_limit": "100Mi",
+  "max_memory_limit": "",
+  "min_cpu_limit": "100m",
+  "max_cpu_limit": "",
+  "min_gpu_limit": 0,
+  "max_gpu_limit": 0
+}
