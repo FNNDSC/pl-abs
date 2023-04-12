@@ -14,9 +14,10 @@ pub fn abs_file(input_file: &Path, output_file: &Path) -> io::Result<()> {
 
     let mut prev = None;
     let mut was_negative = false;
+    let mut cur = b'\0';
 
     for nb in reader.bytes() {
-        let cur = nb?;
+        cur = nb?;
         if cur == b'-' {
             was_negative = true;
         } else if was_negative {
@@ -31,6 +32,9 @@ pub fn abs_file(input_file: &Path, output_file: &Path) -> io::Result<()> {
         prev = Some(cur)
     }
 
+    if cur != b'\0' {
+        writer.write(&[cur])?;
+    }
     writer.flush()?;
     Ok(())
 }

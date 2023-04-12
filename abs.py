@@ -90,6 +90,7 @@ def abs_file(input_file: Path, output_file: Path):
         with output_file.open('wb') as o:
             prev = b''
             was_negative = False
+            cur = None
             while cur := i.read(1):
                 if cur == b'-':
                     was_negative = True
@@ -99,6 +100,8 @@ def abs_file(input_file: Path, output_file: Path):
                     was_negative = False
                 o.write(prev)
                 prev = cur
+            if cur is not None:
+                o.write(cur)
     print(f'{input_file} -> {output_file}')
 
 
