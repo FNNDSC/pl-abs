@@ -8,6 +8,34 @@
 calculates the **absolute value** of each number in each data file of an input directory,
 writing outputs to an output directory.
 
+## Usage
+
+Let `incoming/` be a directory containing input files containing numerical data, e.g.
+
+```
+-3
+-4
+-5.6
+7.896
+2.3E-4
+-5.5E6
+```
+
+The values separator can be anything, and non-numerical data is ignored. e.g. a CSV:
+
+```csv
+food,price_2019,price_2020,change,tasty
+apple,1.1,1.2,0.1,false
+cereal,2.0,1.5,-.5,false
+peanut butter,3.0,5.0,2.0,true
+```
+
+Run `pl-abs` with a directory containing inputs and a directory for outputs:
+
+```shell
+apptainer exec docker://ghcr.io/fnndsc/pl-abs:latest abs --input-file .txt,.csv incoming/ outgoing/
+```
+
 ## Correctness?
 
 `pl-abs` does not deserialize numbers. To be more true about its functionality, `pl-abs` removes

@@ -107,7 +107,7 @@ jobs:
           docker run --rm -u "$(id -u):$(id -g)" \
             -v "$PWD/examples/incoming:/incoming:ro" \
             -v "$output_dir:/outgoing:rw" \
-            localhost:5000/$dock_image abs /incoming /outgoing
+            localhost:5000/$dock_image abs --input-files .txt,.csv /incoming /outgoing
           
           for expected_file in $(find examples/outgoing -type f); do
             fname="${expected_file##*/}"
