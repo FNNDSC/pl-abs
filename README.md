@@ -4,9 +4,23 @@
 [![MIT License](https://img.shields.io/github/license/fnndsc/pl-abs)](https://github.com/FNNDSC/pl-abs/blob/main/LICENSE)
 [![ci](https://github.com/FNNDSC/pl-abs/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/pl-abs/actions/workflows/ci.yml)
 
-`pl-abs` is a [blazingly-fast](#Benchmarks) and correct _ChRIS_ _ds_-type plugin which
+`pl-abs` is a [blazingly-fast](#Benchmarks) and [correct](#Correctness) _ChRIS_ _ds_-type plugin which
 calculates the **absolute value** of each number in each data file of an input directory,
 writing outputs to an output directory.
+
+## Correctness?
+
+`pl-abs` does not deserialize numbers. To be more true about its functionality, `pl-abs` removes
+any negative sign found in front of anything it thinks is the start of a number, specifically any
+character from the set `1234567890.`.
+
+This implementation means `pl-abs` guarantees numerical stability, whereas typical programmatic
+implementations of the "absolute value" function can cause a loss of floating point precision.
+
+Some readings on floating point math and numerical stability:
+
+- https://0.30000000000000004.com/
+- https://arxiv.org/abs/2112.11508
 
 ## Benchmarks
 
