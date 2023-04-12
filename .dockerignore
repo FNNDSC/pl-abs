@@ -1,0 +1,6 @@
+/target
+/.idea
+
+/.git/
+/examples/
+/stress_test/
