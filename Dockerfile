@@ -1,10 +1,16 @@
-# TODO https://libreddit.spike.codes/r/rust/comments/126xeyx/exploring_the_problem_of_faster_cargo_docker/
-
-FROM rust:1.68-slim-buster as builder
+FROM rust:1.68-slim-buster as base
+FROM base as builder
 ARG CARGO_TERM_COLOR=always
+
 WORKDIR /usr/local/src/abs
+
 COPY . .
-RUN cargo build --release
+
+# Build using persistent cache, requires Docker buildx
+# More info: https://github.com/rust-lang/cargo/issues/2644
+RUN --mount=type=cache,target=/usr/local/cargo,from=base,source=/usr/local/cargo \
+    --mount=type=cache,target=target \
+    cargo build --release
 
 FROM debian:buster-slim
 COPY --from=builder /usr/local/src/abs/target/release/abs /usr/local/bin/abs
