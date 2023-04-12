@@ -1,6 +1,7 @@
 mod path_mapper;
 mod abs_file;
 
+use std::fmt::Debug;
 use crate::path_mapper::file_mapper;
 use clap::Parser;
 use std::path::PathBuf;
@@ -51,9 +52,19 @@ fn main() -> anyhow::Result<()> {
     for r in file_mapper(args.input_dir, args.output_dir, args.input_files)? {
         let (input_file, output_file) = r?;
         abs_file(&input_file, &output_file)?;
-        println!("{input_file:?} -> {output_file:?}");
+        print_pair(&input_file, &output_file);
     }
-
     anyhow::Ok(())
 }
 
+const GREEN: &str = "\x1b[0;32m";
+const CYAN: &str = "\x1b[0;36m";
+const RESET: &str = "\x1b[0m";
+
+fn print_pair(a: impl Debug, b: impl Debug) {
+    if std::env::var("NO_COLOR").is_ok() {
+        eprintln!("{a:?} -> {b:?}")
+    } else {
+        eprintln!("{CYAN}{a:?}{RESET} -> {GREEN}{b:?}{RESET}")
+    }
+}
