@@ -1,4 +1,17 @@
 {
+  "name": "pl-abs",
+  "version": "1.0.0",
+  "dock_image": "ghcr.io/fnndsc/pl-abs:1.0.0",
+  "public_repo": "https://github.com/FNNDSC/pl-abs",
+
+  "icon": "",
+  "authors": "Jennings Zhang <Jennings.Zhang@childrens.harvard.edu>",
+  "title": "Absolute Value",
+  "category": "Utility",
+  "description": "A ChRIS plugin to calculate absolute value of numbers in data files",
+  "documentation": "https://github.com/FNNDSC/pl-abs",
+  "license": "MIT",
+
   "type": "ds",
   "parameters": [
     {
@@ -13,14 +26,6 @@
       "ui_exposed": true
     }
   ],
-  "icon": "",
-  "authors": "Jennings Zhang <Jennings.Zhang@childrens.harvard.edu>",
-  "title": "Absolute Value",
-  "category": "Utility",
-  "description": "A ChRIS plugin to calculate absolute value of numbers in data files",
-  "documentation": "https://github.com/FNNDSC/pl-abs",
-  "license": "MIT",
-  "version": "1.0.0",
   "selfpath": "/usr/local/bin",
   "selfexec": "abs",
   "execshell": "/docker-entrypoint.sh",
