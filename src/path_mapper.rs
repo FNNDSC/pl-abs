@@ -2,11 +2,11 @@ use std::io;
 use std::path::{Path, PathBuf};
 
 /// Similar to [chris_plugin.PathMapper.file_mapper](https://fnndsc.github.io/chris_plugin/v0.2.0a1/chris_plugin.html#PathMapper.file_mapper)
-pub fn file_mapper(
-    input_dir: PathBuf,
-    output_dir: PathBuf,
-    suffixes: Vec<String>,
-) -> io::Result<impl Iterator<Item = Result<(PathBuf, PathBuf), io::Error>>> {
+pub fn file_mapper<'a, S: AsRef<str>>(
+    input_dir: &'a Path,
+    output_dir: &'a Path,
+    suffixes: &'a [S],
+) -> io::Result<impl Iterator<Item = Result<(PathBuf, PathBuf), io::Error>> + 'a> {
     if !input_dir.is_dir() {
         return Err(io::Error::new(
             io::ErrorKind::InvalidInput,
@@ -21,13 +21,12 @@ pub fn file_mapper(
         .into_iter()
         .map(|r| r.map(|entry| entry.into_path()))
         .map(|r| r.map_err(io::Error::from))
-        .filter(|r| {
-            r.as_ref().map(|p| p.is_file()).unwrap_or(true)
-        })
+        .filter(|r| r.as_ref().map(|p| p.is_file()).unwrap_or(true))
         .filter(move |r| {
             r.as_ref()
                 .map(|p| p.file_name().unwrap().to_string_lossy())
-                .map(|p| suffixes.iter().any(|s| p.ends_with(s))).unwrap_or(true)
+                .map(|p| suffixes.iter().any(|s| p.ends_with(s.as_ref())))
+                .unwrap_or(true)
         })
         .map(move |r| {
             r.and_then(|input_file| create_out_path_pair(&input_dir, &output_dir, input_file))

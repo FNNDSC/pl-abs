@@ -10,6 +10,26 @@ writing outputs to an output directory.
 
 ## Usage
 
+Run `pl-abs` with a directory containing containing .txt and .csv file inputs, and a separate directory for outputs:
+
+```shell
+apptainer exec docker://fnndsc/pl-abs:latest abs --input-file .txt,.csv incoming/ outgoing/
+```
+
+To write outputs in-place to the same directory, use `--output-suffix` to avoid clobbering files.
+
+```shell
+apptainer exec docker://fnndsc/pl-abs:latest abs --input-file .txt --output-suffix abs.txt data/ data/
+```
+
+On _ChRIS_, it cn be useful to copy unmodified files to the output directory as well:
+
+```shell
+apptainer exec docker://fnndsc/pl-abs:latest abs --copy --output-suffix abs.txt data/ data/
+```
+
+## Input Examples
+
 Let `incoming/` be a directory containing input files containing numerical data, e.g.
 
 ```
@@ -30,11 +50,7 @@ cereal,2.0,1.5,-.5,false
 peanut butter,3.0,5.0,2.0,true
 ```
 
-Run `pl-abs` with a directory containing inputs and a directory for outputs:
-
-```shell
-apptainer exec docker://ghcr.io/fnndsc/pl-abs:latest abs --input-file .txt,.csv incoming/ outgoing/
-```
+See [`examples/incoming`](./examples/incoming) for examples.
 
 ## Correctness?
 
@@ -91,4 +107,4 @@ hyperfine -c 'rm -rf /tmp/outgoing' \
     'find stress_test/incoming -type f -name "*.txt"  | parallel -j4 "mkdir -p /tmp/outgoing/{}; vertstats_math -old_style_file -abs {} /tmp/outgoing/{}"'
 ```
 
-TODO: benchmark v.s. Numpy, Julia?
+TODO: benchmark v.s. Numpy, Codon, PyPy, Julia, ...

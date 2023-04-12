@@ -1,9 +1,9 @@
-use std::{fs, io};
-use std::io::{Read, Write, BufReader, BufWriter};
+use std::io::{BufReader, BufWriter, Read, Write};
 use std::path::Path;
+use std::{fs, io};
 
 const NUMBER_STARTS: [u8; 11] = [
-    b'1', b'2', b'3', b'4', b'5', b'6', b'7', b'8', b'9', b'0', b'.'
+    b'1', b'2', b'3', b'4', b'5', b'6', b'7', b'8', b'9', b'0', b'.',
 ];
 
 /// A low-level implementation of absolute value, removing negative signs which precede numbers.
