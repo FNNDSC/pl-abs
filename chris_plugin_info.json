@@ -1,7 +1,7 @@
 {
   "name": "pl-abs",
-  "version": "1.0.0",
-  "dock_image": "ghcr.io/fnndsc/pl-abs:1.0.0",
+  "version": "1.0.1",
+  "dock_image": "ghcr.io/fnndsc/pl-abs:1.0.1",
   "public_repo": "https://github.com/FNNDSC/pl-abs",
 
   "icon": "",
@@ -23,6 +23,28 @@
       "action": "store",
       "help": "File extensions of files to include.",
       "default": ".txt",
+      "ui_exposed": true
+    },
+    {
+      "name": "output_suffix",
+      "type": "str",
+      "optional": true,
+      "flag": "--output-suffix",
+      "short_flag": "-o",
+      "action": "store",
+      "help": "File extensions of files to include.",
+      "default": "",
+      "ui_exposed": true
+    },
+    {
+      "name": "copy",
+      "type": "bool",
+      "optional": true,
+      "flag": "--copy",
+      "short_flag": "-c",
+      "action": "store_true",
+      "help": "Copy ignored files to output dir",
+      "default": false,
       "ui_exposed": true
     }
   ],
