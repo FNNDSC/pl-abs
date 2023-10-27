@@ -13,13 +13,13 @@ writing outputs to an output directory.
 Run `pl-abs` with a directory containing containing .txt and .csv file inputs, and a separate directory for outputs:
 
 ```shell
-apptainer exec docker://fnndsc/pl-abs:latest abs --input-file .txt,.csv incoming/ outgoing/
+apptainer exec docker://fnndsc/pl-abs:latest abs --input-files .txt,.csv incoming/ outgoing/
 ```
 
 To write outputs in-place to the same directory, use `--output-suffix` to avoid clobbering files.
 
 ```shell
-apptainer exec docker://fnndsc/pl-abs:latest abs --input-file .txt --output-suffix abs.txt data/ data/
+apptainer exec docker://fnndsc/pl-abs:latest abs --input-files .txt --output-suffix abs.txt data/ data/
 ```
 
 On _ChRIS_, it cn be useful to copy unmodified files to the output directory as well:
